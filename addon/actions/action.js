@@ -29,6 +29,8 @@ export default EmberObject.extend({
     this._super(...arguments);
     assert('Custom actions require model property to be passed!', this.get('model'));
     assert('Custom action model has to be persisted!', !(this.get('instance') && !this.get('model.id')));
+    
+    this.options = {};
   },
 
   /**
@@ -36,20 +38,6 @@ export default EmberObject.extend({
     @return {DS.Store}
   */
   store: readOnly('model.store'),
-
-  /**
-    @public
-    @return {Object}
-  */
-  options: computed({
-    get() {
-      return {};
-    },
-
-    set(key, value) {
-      return value;
-    }
-  }),
 
   /**
     @private
